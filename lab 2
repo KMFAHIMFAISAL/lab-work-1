@@ -134,7 +134,7 @@
 <body>
   <div class="container">
     <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo">
+      <img src= "D:\web tech\19eaef08183424c041f46ef90d67482e.webp" alt="Logo">
     </div>
     <div class="title">STUDENT INFORMATION FORM</div>
     <div class="grid">
