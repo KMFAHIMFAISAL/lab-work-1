@@ -1,46 +1,57 @@
- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Information Form</title>
+  <title>Custom Flexbox Layout</title>
   <style>
     * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       background-color: #f4f4f4;
       width: 100%;
     }
 
     .container {
       width: 100%;
+      display: flex;
+      flex-direction: column;
       max-width: 1200px;
       background: white;
       padding: 20px;
     }
 
     .logo {
-      text-align: center;
-      margin-bottom: 10px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
     .logo img {
-      height: 80px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .title {
       text-align: center;
       font-size: 20px;
-      font-weight: bold;
-      background: #ddd;
+      background: #1976d2;
+      color: white;
       padding: 10px;
       margin-bottom: 10px;
     }
@@ -52,41 +63,60 @@
     }
 
     .left-column, .right-column {
-      flex: 1;
+      flex:1;
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
 
-    .box1, .box2, .box4 {
-      background: #eaeaea;
+    .box1 {
+      background: #a5d6a7;
+      height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       font-weight: bold;
       border: 1px solid #bbb;
-      height: 460px; /* Ensuring all boxes have the same height */
+    }
+
+    .box2 {
+      background: #ffe082;
+      height: 460px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid #bbb;
     }
 
     .box3 {
       display: flex;
-      justify-content: flex-start;
-      flex-direction: column;
-      align-items: flex-start;
       padding: 20px;
-      background: #eaeaea;
+      background: #b3e5fc;
       border: 1px solid #bbb;
-      height: 460px; /* Set height same as other boxes */
-      overflow-y: auto; /* Ensures content is scrollable if needed */
       width: 100%;
+      height: 480px;
     }
 
-    form {
+    .box4 {
+      background: #ce93d8;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid #bbb;
+    }
+
+    .box3 form {
+      flex: 1;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: 100%;
+      gap: 2px;
     }
 
     label {
@@ -100,10 +130,10 @@
       border-radius: 4px;
     }
 
-    .radio-group, .checkbox {
+    .checkbox {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 5px;
     }
 
     button {
@@ -119,24 +149,27 @@
       background-color: #45a049;
     }
 
-    .result {
-      margin-top: 20px;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #bbb;
+    .box3 form::-webkit-scrollbar {
+      width: 8px;
     }
 
-    .result h3 {
-      margin-bottom: 10px;
+    .box3 form::-webkit-scrollbar-thumb {
+      background-color: #999;
+      border-radius: 4px;
+    }
+
+    .box3 form {
+      scrollbar-width: thin;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <img src= "D:\web tech\19eaef08183424c041f46ef90d67482e.webp" alt="Logo">
+      <!-- Replace the URL with your own image path -->
+      <img src= "D:\web tech\19eaef08183424c041f46ef90d67482e.webp" alt="Logo" />
     </div>
-    <div class="title">STUDENT INFORMATION FORM</div>
+    <div class="title">Student Information Form</div>
     <div class="grid">
       <div class="left-column">
         <div class="box1">Box 1</div>
@@ -144,121 +177,56 @@
       </div>
       <div class="right-column">
         <div class="box3">
-          <form id="myForm">
+          <form>
+            <div id="errormessage"></div>
+            <div id="nameError"></div>
+            <div id="emailError"></div>
+            <div id="passwordError"></div>
+            <div id="confimpasswordError"></div>
+            <div id="locationError"></div>
+            <div id="zipcodeError"></div>
+            <div id="countryError"></div>
+            <div id="termsError"></div>
+
             <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" >
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label>Gender</label>
-            <div class="radio-group">
-              <label><input type="radio" name="gender" value="Male"> Male</label>
-              <label><input type="radio" name="gender" value="Female"> Female</label>
-              <label><input type="radio" name="gender" value="Other"> Other</label>
-            </div>
+            <input type="email" id="email" name="email" placeholder="Enter your email" >
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" >
 
             <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" >
 
             <label for="location">Location</label>
-            <input type="text" id="location" name="location" placeholder="Enter your location" required>
+            <input type="text" id="location" name="location" placeholder="Enter your location" >
 
             <label for="zipcode">Zip Code</label>
-            <input type="text" id="zipcode" name="zipcode" placeholder="Enter your zip code" required>
+            <input type="text" id="zipcode" name="zipcode" placeholder="Enter your zip code" >
 
             <label for="country">Country</label>
-            <select id="country" name="country" required>
-              <option value="">Select Country</option>
-              <option value="USA">USA</option>
-              <option value="UK">UK</option>
-              <option value="Canada">Canada</option>
+            <select id="country" name="country">
+              <option value="" disabled selected>Select your country</option>
               <option value="Bangladesh">Bangladesh</option>
+              <option value="Uk">UK</option>
+              <option value="Canada">Canada</option>
+              <option value="USA">USA</option>
             </select>
 
             <div class="checkbox">
-              <input type="checkbox" id="terms" name="terms" required>
+              <input type="checkbox" id="terms" name="terms" >
               <label for="terms">I agree to the terms and conditions</label>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="return validate()">Submit</button>
           </form>
-
-          <div class="result" id="result" style="display:none;"></div>
         </div>
         <div class="box4">Box 4</div>
       </div>
     </div>
   </div>
-
-  <script>
-    document.getElementById("myForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const fullname = document.getElementById("fullname").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirm-password").value;
-      const location = document.getElementById("location").value.trim();
-      const zipcode = document.getElementById("zipcode").value.trim();
-      const country = document.getElementById("country").value;
-      const terms = document.getElementById("terms").checked;
-      const genderInput = document.querySelector('input[name="gender"]:checked');
-
-      const namePattern = /^[a-zA-Z\s]+$/;
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const passwordPattern = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
-      const zipPattern = /^\d{4}$/;
-
-      if (!fullname || !email || !password || !confirmPassword || !location || !zipcode || !country || !terms || !genderInput) {
-        alert("Please fill out all fields, select gender, and accept the terms.");
-        return;
-      }
-
-      if (!namePattern.test(fullname)) {
-        alert("Full name should contain only letters and spaces.");
-        return;
-      }
-
-      if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-
-      if (!passwordPattern.test(password)) {
-        alert("Password must be at least 8 characters long, contain an uppercase letter and a special character.");
-        return;
-      }
-
-      if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-      }
-
-      if (!zipPattern.test(zipcode)) {
-        alert("Zip code must be exactly 4 digits.");
-        return;
-      }
-
-      const gender = genderInput.value;
-
-      const resultDiv = document.getElementById("result");
-      resultDiv.style.display = "block";
-      resultDiv.innerHTML = `
-        <h3>Submitted Information:</h3>
-        <p><strong>Full Name:</strong> ${fullname}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Gender:</strong> ${gender}</p>
-        <p><strong>Location:</strong> ${location}</p>
-        <p><strong>Zip Code:</strong> ${zipcode}</p>
-        <p><strong>Country:</strong> ${country}</p>
-      `;
-
-      document.getElementById("myForm").reset();
-    });
-  </script>
+  <script src="validation.js"></script>
 </body>
 </html>
